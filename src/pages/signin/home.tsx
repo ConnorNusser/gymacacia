@@ -1,6 +1,7 @@
 import GoogleButton from 'react-google-button';
 import React, { useState } from "react";
 import Router from "next/router";
+import '@/styles/Home.module.css';
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
