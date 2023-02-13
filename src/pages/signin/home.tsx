@@ -1,55 +1,17 @@
-import GoogleButton from 'react-google-button';
-import React, { useState } from "react";
-import Router from "next/router";
-import '@/styles/Home.module.css';
-
-const SignInForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  function getErrorMessage(error: unknown) {
-    if (error instanceof Error) return error.message
-    return String(error)
+import React, { Component } from 'react';
+import Navbar from '@/components/Navbar';
+import SignInForm from './homeContent';
+import { Inter } from '@next/font/google'
+import styles from '@/styles/Home.module.css'
+class signIn extends Component {
+  render() {
+    return (
+      <div>
+        <Navbar username={''} isLoggedIn={false} />
+        <SignInForm />
+      </div>
+    );
   }
-  const handleSubmit = () => {
-    try {
-      // Implement your sign-in logic here
-      // ...
+}
 
-      Router.push("/dashboard");
-    } catch (error) {
-        reportError({message: getErrorMessage(error)})
-    }
-  };
-
-  return (
-    <div>
-    <form onSubmit={handleSubmit}>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button type="submit">Sign In</button>
-    </form>
-    <GoogleButton/>
-    </div>
-  );
-};
-
-export default SignInForm;
+export default signIn;
