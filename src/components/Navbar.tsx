@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import GoogleButton from 'react-google-button';
 
 type NavBarTypes = {
   isLoggedIn: boolean;
@@ -16,7 +17,7 @@ const Navbar = (props: NavBarTypes) => {
       <Link href="/about">About</Link>
       <Link href="/ninjas/">Profile</Link>
       <div>
-      { username === null ? <ComponentA /> : <WelcomeObject username ={username} /> }
+      { username === '' ? <Link href="/pages/signin">Sign In</Link> : <WelcomeObject username ={username} /> }
       </div>
 
     </nav>

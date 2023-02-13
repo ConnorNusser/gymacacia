@@ -1,12 +1,10 @@
 import GoogleButton from 'react-google-button';
 
 
-const Signin = () => {
+export default function Home() {
     return (
         <div>
             <GoogleButton />
         </div>
     );
 }
-
-export default Signin;
