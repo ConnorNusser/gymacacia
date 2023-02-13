@@ -17,7 +17,7 @@ const Navbar = (props: NavBarTypes) => {
       <Link href="/about">About</Link>
       <Link href="/ninjas/">Profile</Link>
       <div>
-      { username === '' ? <Link href="/pages/signin">Sign In</Link> : <WelcomeObject username ={username} /> }
+      { username === '' ? <Link href="/signin/home">Sign In</Link> : <WelcomeObject username ={username} /> }
       </div>
 
     </nav>
