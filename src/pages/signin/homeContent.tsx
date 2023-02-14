@@ -4,6 +4,7 @@ import Router from "next/router";
 import '@/styles/Home.module.css';
 import styles from '@/styles/Home.module.css'
 import Button from '@mui/material/Button';
+import { UserAuth } from '@/context/authcontext';
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
@@ -13,6 +14,14 @@ const SignInForm = () => {
   function getErrorMessage(error: unknown) {
     if (error instanceof Error) return error.message
     return String(error)
+  }
+  const handleGoogleSignIn = async () => {
+    const googleSignIn: any = UserAuth();
+    try{
+      await googleSignIn();
+    }catch(error){
+      reportError({ message: getErrorMessage(error)})
+    }
   }
   const handleSubmit = () => {
     try {
@@ -56,7 +65,7 @@ const SignInForm = () => {
         <Button variant="contained" size="medium">Sign In</Button>
       </div>
       <div >
-        <GoogleButton/>
+        <GoogleButton onClick={handleGoogleSignIn}/>
       </div>
     </form>
     </div>
