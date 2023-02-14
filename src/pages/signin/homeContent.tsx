@@ -16,7 +16,7 @@ const SignInForm = () => {
     return String(error)
   }
   const handleGoogleSignIn = async () => {
-    const googleSignIn: any = UserAuth();
+    const {googleSignIn, user} = UserAuth();
     try{
       await googleSignIn();
     }catch(error){

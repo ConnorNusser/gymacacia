@@ -7,7 +7,14 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import { auth  } from '@/services/firebase';
-const AuthContext = createContext({});
+
+interface FirebaseContextProps{
+    googleSignIn: any;
+    logOut: any;
+    user: any;
+}
+
+const AuthContext = createContext<Partial<FirebaseContextProps>>({})
 export const AuthContextProvider = ({ children }: any) => {
   const [user, setUser] = useState<any | null>(null);
 
