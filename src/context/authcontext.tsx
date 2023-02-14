@@ -6,10 +6,13 @@ import { GoogleAuthProvider,
         onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/services/firebase";
 
+interface authcontext {
+    value: any;
+}
 
+const AuthContext = createContext({});
 
 export const AuthContextProvider = ({children}: any) => {
-    const AuthContext = createContext();
     const googleSignIn = () => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider);
@@ -22,6 +25,5 @@ export const AuthContextProvider = ({children}: any) => {
 }
 
 export const UserAuth =() => {
-    const AuthContext = createContext('hi');
     return useContext(AuthContext)
 }
