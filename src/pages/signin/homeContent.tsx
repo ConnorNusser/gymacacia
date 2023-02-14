@@ -10,13 +10,13 @@ const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const {googleSignIn, user} = UserAuth();
 
   function getErrorMessage(error: unknown) {
     if (error instanceof Error) return error.message
     return String(error)
   }
   const handleGoogleSignIn = async () => {
-    const {googleSignIn, user} = UserAuth();
     try{
       await googleSignIn();
     }catch(error){
