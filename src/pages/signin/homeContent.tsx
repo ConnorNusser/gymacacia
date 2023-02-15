@@ -17,12 +17,8 @@ const SignInForm = () => {
     return String(error)
   }
   const handleGoogleSignIn = async () => {
-    console.log("hello");
-    console.log(googleSignIn);
-    console.log(logOut);
-    console.log(user);
     try{
-      await googleSignIn;
+      await googleSignIn();
     }catch(error){
       reportError({ message: getErrorMessage(error)})
     }
