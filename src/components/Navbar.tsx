@@ -1,12 +1,21 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import GoogleButton from 'react-google-button';
+import { UserAuth } from '@/context/authcontext';
 
 type NavBarTypes = {
   isLoggedIn: boolean;
   username: string;
 }
 const Navbar = (props: NavBarTypes) => {
+  const { user, logOut} = UserAuth();
+  const handleSignOut = async () => {
+    try{
+      await logOut();
+    }catch (error) {
+      console.log(error);
+    }
+  }
   const { isLoggedIn, username} = props;
   return (
     <nav>
@@ -17,7 +26,7 @@ const Navbar = (props: NavBarTypes) => {
       <Link href="/about">About</Link>
       <Link href="/ninjas/">Profile</Link>
       <div>
-      { username === '' ? <Link href="/signin/home">Sign In</Link> : <WelcomeObject username ={username} /> }
+      { user === '' || null ? <Link href="/signin/home">Sign In</Link> : <WelcomeObject username ={username} /> }
       </div>
 
     </nav>

@@ -1,5 +1,5 @@
 import GoogleButton from 'react-google-button';
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Router from "next/router";
 import '@/styles/Home.module.css';
 import styles from '@/styles/Home.module.css'
@@ -11,6 +11,13 @@ const SignInForm = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const {googleSignIn, logOut, user} = UserAuth();
+
+  useEffect(() => {
+    console.log(user)
+    if (user != null) {
+      Router.push('/profile/${user}');
+    }
+  }, [user]);
 
   function getErrorMessage(error: unknown) {
     if (error instanceof Error) return error.message
