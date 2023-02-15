@@ -26,7 +26,7 @@ const Navbar = (props: NavBarTypes) => {
       <Link href="/about">About</Link>
       <Link href="/ninjas/">Profile</Link>
       <div>
-      { user === '' || null ? <Link href="/signin/home">Sign In</Link> : <WelcomeObject username ={username} /> }
+      { user === '' || null ? <Link href="/signin/home">Sign In</Link> : <WelcomeObject username ={user.displayName} /> }
       </div>
 
     </nav>
