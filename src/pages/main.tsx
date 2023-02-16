@@ -1,4 +1,4 @@
-import Card from '@/components/cardSearch';
+import SearchCard from '@/components/cardSearch';
 import Head from 'next/head'
 
 const Main = () => {
@@ -9,7 +9,7 @@ const Main = () => {
         <meta name="mainpage" content="search"/>
       </Head>
       <div>
-        <Card/>
+        <SearchCard/>
       </div>
     </>
   );
