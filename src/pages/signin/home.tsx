@@ -7,7 +7,7 @@ class signIn extends Component {
   render() {
     return (
       <div>
-        <Navbar username={''} isLoggedIn={false} />
+        <Navbar/>
         <SignInForm />
       </div>
     );

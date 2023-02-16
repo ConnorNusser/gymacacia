@@ -15,7 +15,8 @@ const SignInForm = () => {
   useEffect(() => {
     console.log(user)
     if (user != null) {
-      Router.push('/profile/${user}');
+      const routerstr = '/profile/${user.displayName}';
+      Router.push(routerstr);
     }
   }, [user]);
 
