@@ -1,5 +1,5 @@
 import React from 'react';
-import cardStyle from '@/styles/card.css';
+import cardStyle from '../styles/card.module.css';
 
 function Card() {
   return (
