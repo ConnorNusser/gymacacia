@@ -9,7 +9,7 @@ function CardSearch() {
       <div className={search.search}>
         <input type="text" className={search.searchTerm} placeholder="Type some key words to create a post."></input>
         <button type="submit" className={search.searchButton}>
-          < ArrowUpwardIcon/>
+          <ArrowUpwardIcon/>
         </button>
       </div>
     </div>

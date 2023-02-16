@@ -2,10 +2,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import GoogleButton from 'react-google-button';
 import { UserAuth } from '@/context/authcontext';
+import DropDown from './dropdown';
 
 
 const Navbar = () => {
   const { user, logOut} = UserAuth();
+  const profilestr = user? `/profile/${user.displayName}`: `/signin/home`;
   const handleSignOut = async () => {
     try{
       await logOut();
@@ -20,25 +22,12 @@ const Navbar = () => {
       </div>
       <Link href="/">Home</Link>
       <Link href="/about">About</Link>
-      <Link href="/ninjas/">Profile</Link>
+      <Link href={profilestr}>Profile</Link>
       <div>
-      { user == '' || user == null ? <Link href="/signin/home">Sign In</Link> : <WelcomeObject username ={user?.displayName} /> }
+      { user == '' || user == null ? <Link href="/signin/home">SignIn</Link> : <DropDown displayName={user?.displayName} /> }
       </div>
-
     </nav>
   );
 }
 
-interface wObjectInfo {
-  username: string;
-}
-const WelcomeObject = (props: wObjectInfo) =>{
-  console.log(props);
-  return(
-    <div>
-      <h3>Signed in as {props.username}!</h3>
-    </div>
-  )
-} 
- 
 export default Navbar;
