@@ -22,9 +22,6 @@ const LinkSocialMedia = (props: ILinkSocialMedia) =>{
   }
 
 export default function SocialMediaList(){
-    const Instagram = IconLinks.Instagram;
-    const Facebook = IconLinks.Facebook;
-    const Twitter = IconLinks.Twitter;
     return (
         <ul className={cardStyle.cardList}>
             <LinkSocialMedia imgLink = {IconLinks.Instagram} name = "Instagram"  />
