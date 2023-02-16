@@ -10,7 +10,7 @@ export default function Home() {
   const {user} = UserAuth();
   useEffect(() => {
     if(user == null || user == ''){
-      Router.push('hi')
+      Router.push('signin/home')
     }
     // ...
   }, []);

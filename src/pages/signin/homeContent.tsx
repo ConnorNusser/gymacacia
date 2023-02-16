@@ -46,6 +46,7 @@ const SignInForm = () => {
     <div>
     <div className={styles.title}>
         <h1 className={styles.title}>Welcome to Acacia!</h1>
+        <h2 className={styles.title}>Sign In To Get Started!</h2>
     </div>
     <div className={styles.center}>
     <form onSubmit={handleSubmit}>
