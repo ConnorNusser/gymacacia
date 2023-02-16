@@ -7,7 +7,6 @@ class signIn extends Component {
   render() {
     return (
       <div>
-        <Navbar/>
         <SignInForm />
       </div>
     );
