@@ -11,6 +11,8 @@ export default function Home() {
   useEffect(() => {
     if(user == null || user == ''){
       Router.push('signin/home')
+    }else{
+      Router.push('main')
     }
     // ...
   }, []);
