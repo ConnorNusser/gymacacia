@@ -26,7 +26,7 @@ const Navbar = (props: NavBarTypes) => {
       <Link href="/about">About</Link>
       <Link href="/ninjas/">Profile</Link>
       <div>
-      { user === '' || null ? <Link href="/signin/home">Sign In</Link> : <WelcomeObject username ={user.displayName} /> }
+      { user === '' || null ? <Link href="/signin/home">Sign In</Link> : <WelcomeObject username ={user?.displayName} /> }
       </div>
 
     </nav>
@@ -37,6 +37,7 @@ interface wObjectInfo {
   username: string;
 }
 const WelcomeObject = (props: wObjectInfo) =>{
+  console.log(props);
   return(
     <div>
       <h3>Signed in as {props.username}!</h3>
