@@ -5,8 +5,7 @@ const nextConfig = {
 
 module.exports = {
   images: {
-    formats: ['image/avif', 'image/webp', 'image/svg', 'image/png', '.png', 
-    'svg'],
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',
