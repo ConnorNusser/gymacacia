@@ -3,7 +3,6 @@ import search from '../styles/search.module.css';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import LinkSocialMedia from './linkSocialMedia';
 export default function CardSearch(this: any) {
-  const [state, setState] = useState();
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const handleSubmissionPost = (prompt: string) => {
@@ -22,6 +21,8 @@ fetch('http://localhost:5000/getfeedinfo', requestOptions)
 
   }
     const handleSubmit= (e:any) => {
+      console.log(searchTerm);
+      console.log("hi");
       console.log(e);
       console.log(handleSubmissionPost(e));
       e.preventDefault();
