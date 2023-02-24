@@ -1,16 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 
-.search {
-  width: 100%;
-  position: relative;
-  display: flex;
-}
-
 .responseCard{
-  margin: 25px;
+  display: inline-flex;
+  justify-content:center;
+  padding-bottom: 5%;
+  padding-left: 25px;
 }
 
+.box {
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
 
 /*Resize the wrap to see the search bar change!*/
 .wrap{
@@ -19,10 +21,6 @@
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-.responseCard{
-  align-items: center;
-  padding-top: 35%;
 }
 .bar{
   box-shadow: 1px 1px 8px 1px #dcdcdc;
@@ -44,4 +42,9 @@
   display: flex;
   justify-content: center;
   padding-top: 1rem;
+}
+.cardWrap {
+  display: inline-block;
+  justify-content: center;
+  padding: 20px;
 }

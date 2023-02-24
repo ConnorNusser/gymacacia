@@ -1,6 +1,9 @@
 import { UserAuth } from "@/context/authcontext";
 import styles from '@/styles/Home.module.css'
-
+import { useState } from "react";
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
+import TodoList from "@/components/todoList";
 interface IProfileComponent {
   photoUrl:any;
   displayName:any;
@@ -17,12 +20,24 @@ function Profile() {
 }
 
 const ProfileComponent = (props:IProfileComponent) => {
+  const [searchTerm, setSearchTerm] = useState<number>(0);
   return (
-  <div className={styles.centerStacked}>
-        <img src= {props.photoUrl} width="100" height="100"/>
-        <p className={styles.title}>{props.displayName}</p>
-        <p className={styles.title}>{props.email}</p>
-    </div>
+   <>
+  <div className="container">
+    <div className="row">
+          <div className="col-sm">
+          <div className="btn-group" role="group" aria-label="Basic example">
+          <Button variant="primary">Tags<Badge bg="secondary">{searchTerm}</Badge></Button>
+          <Button variant="primary">Add New</Button>
+        </div>
+          <TodoList/>
+          </div>
+          <div className="col-sm">
+          <p className={styles.title}>Hi there, {props.displayName}</p>
+          </div>
+      </div>
+      </div>
+  </>
   );
 }
 
