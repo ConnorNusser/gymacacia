@@ -1,7 +1,7 @@
 /* Lazy Load Styles */
 .cardImage {
 	display: block;
-	max-height: 3rem; /* layout hack */
+	max-height: 5rem; /* layout hack */
 	background: #fff center center no-repeat;
 	background-size: cover;
 }
@@ -34,7 +34,7 @@
 }
 
 .cardDescription {
-    max-height: 1rem;
+    max-height: 4rem;
 	display: block;
 	padding: 1em 0.5em;
 	color: #515151;
