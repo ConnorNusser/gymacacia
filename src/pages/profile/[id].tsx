@@ -4,6 +4,7 @@ import { useState } from "react";
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import TodoList from "@/components/todoList";
+import CompanyInfo from "@/components/companyInfo";
 interface IProfileComponent {
   photoUrl:any;
   displayName:any;
@@ -33,7 +34,7 @@ const ProfileComponent = (props:IProfileComponent) => {
           <TodoList/>
           </div>
           <div className="col-sm">
-          <p className={styles.title}>Hi there, {props.displayName}</p>
+          <CompanyInfo/>
           </div>
       </div>
       </div>
