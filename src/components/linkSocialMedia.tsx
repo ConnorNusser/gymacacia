@@ -11,8 +11,8 @@ interface ILinkSocialMedia{
     imgLink: string;
     name: any;
 }
-const {user} = UserAuth();
 const LinkSocialMedia = (props: ILinkSocialMedia) =>{
+    const user = {UserAuth};
     return (
         <li className={cardStyle.card}>
 		<Image src= {props.imgLink} width="50" height="50" alt="Instagram" />
