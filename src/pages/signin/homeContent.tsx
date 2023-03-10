@@ -35,7 +35,7 @@ const SignInForm = () => {
   const handleGoogleSignIn = async () => {
     try{
       await googleSignIn();
-      checkSignIn();
+      await checkSignIn();
       const routerstr = `/profile/${user.displayName}`;
       redirect(routerstr);
     }catch(error){
