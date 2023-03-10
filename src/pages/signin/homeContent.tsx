@@ -29,7 +29,8 @@ const SignInForm = () => {
 }
   useEffect(() => {
     if(user != null){
-      console.log(user);
+      checkSignIn();
+      Router.push(`profile/${user.displayName}`)
     }
   },[user])
   function getErrorMessage(error: unknown) {
