@@ -1,0 +1,124 @@
+import React, { useState } from 'react';
+import { ButtonGroup, ToggleButton } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+import { render } from 'react-dom';
+
+const CompanyFormSnippet = () => {
+    return (
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Company Name</Form.Label>
+            <Form.Control
+            type="string"
+            placeholder="Dave's Tacos"
+            autoFocus
+            />
+        </Form.Group>
+    )
+};
+
+export default function BioForm() {
+  const [show, setShow] = useState(true);
+  const [radioValue, setRadioValue] = useState('1');
+  const [contentType, setContentType] = useState("Business");
+  const contentDescriptors = ['Business','Brand'];
+  const buttons = [
+    { name: 'Business', value: '1' },
+    { name: 'Personal', value: '2' },
+  ];
+  const [frequencyType, setfrequencyType] = useState("1");
+  const frequency = [
+    { name: 'Daily', value: '1' },
+    { name: 'Weekly', value: '2' },
+    { name: 'Bi-Weekly', value: '3'},
+    { name: 'Monthly', value: '4'},
+  ];
+
+  const handleClose = () => setShow(false);
+  function valueShifts(e:any){
+    setRadioValue(e.currentTarget.value)
+    setContentType(contentDescriptors[e.currentTarget.value - 1])
+  }
+  return (
+    <>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Automated Content Creation Portal</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            {
+            (radioValue == '1')
+                ? <CompanyFormSnippet/>
+                : <div hidden></div>
+            }
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>Whats the content for?</Form.Label>
+          <br/>
+          <ButtonGroup>
+            {buttons.map((button, idx) => (
+            <ToggleButton
+                key={idx}
+                id={`radio-${idx}`}
+                type="radio"
+                variant={idx % 2 ? 'outline-primary' : 'outline-primary'}
+                name="radio"
+                value={button.value}
+                checked={radioValue === button.value}
+                onChange={(e) => valueShifts(e)}
+            >
+                {button.name}
+            </ToggleButton>
+            ))}
+        </ButtonGroup>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>Post Frequency?</Form.Label>
+          <br/>
+          <ButtonGroup>
+            {frequency.map((freqbutton, timeIdx) => (
+            <ToggleButton
+                key={timeIdx}
+                id={`freq-${timeIdx}`}
+                type="radio"
+                variant={timeIdx % 2 ? 'outline-primary' : 'outline-primary'}
+                name="frequency"
+                value={freqbutton.value}
+                checked={frequencyType === freqbutton.value}
+                onChange={(e) => setfrequencyType(e.currentTarget.value)}
+            >
+                {freqbutton.name}
+            </ToggleButton>
+            ))}
+        </ButtonGroup>
+        </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Location</Form.Label>
+              <Form.Control
+                type="string"
+                placeholder="Austin"
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Brief Description of your {contentType}</Form.Label>
+              <Form.Control as="textarea" rows={3} />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}

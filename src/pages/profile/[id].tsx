@@ -1,25 +1,49 @@
 import { UserAuth } from "@/context/authcontext";
-import styles from '@/styles/Home.module.css'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import TodoList from "@/components/todoList";
 import CompanyInfo from "@/components/companyInfo";
+import { getDoc } from "@firebase/firestore";
+import { db } from "@/services/firebase";
+import { doc } from "firebase/firestore";
+import BioForm from "@/components/bioForm";
+
 interface IProfileComponent {
   photoUrl:any;
   displayName:any;
   email:any;
+  uid:string;
 }
-
 function Profile() {
+  const [isFilledOut, setFilledOut] = useState(true);
   const {user} = UserAuth();
+  useEffect(() => {
+    const formComponent = async()=>{
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()){
+        let isFilledOut = docSnap.data()['isFormFilled'];
+        setFilledOut(isFilledOut);
+      }
+      setFilledOut(false);
+    }
+
+    formComponent()
+  },[]);
   return (
     <div>
-    { user == '' || user == null ? <h1>No Info</h1> : <ProfileComponent photoUrl={user.photoURL} displayName={user.displayName} email = {user.email}/> }
+    <div>
+    {
+    (!isFilledOut)
+        ? <BioForm/>
+        : <div hidden></div>
+    }
+    </div>
+    { user == '' || user == null ? <h1>No Info</h1> : <ProfileComponent photoUrl={user.photoURL} displayName={user.displayName} email = {user.email} uid= {user.uid}/> }
     </div>
     );
 }
-
 const ProfileComponent = (props:IProfileComponent) => {
   const [searchTerm, setSearchTerm] = useState<number>(0);
   return (

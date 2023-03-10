@@ -30,7 +30,7 @@ const SignInForm = () => {
   useEffect(() => {
     if(user != null){
       checkSignIn();
-      Router.push(`profile/${user.displayName}`)
+      Router.push(`/profile/${user.displayName}`)
     }
   },[user])
   function getErrorMessage(error: unknown) {
@@ -55,40 +55,13 @@ const SignInForm = () => {
   };
 
   return (
-    <div>
     <div className={styles.title}>
-        <h1 className={styles.title}>Welcome to Acacia!</h1>
-        <h2 className={styles.title}>Sign In To Get Started!</h2>
-    </div>
-    <div className={styles.center}>
-    <form onSubmit={handleSubmit}>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <div className='blockquote text-center'>
-        <label className="h6" htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div className='blockquote text-center'>
-        <label className="h6" htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div className={styles.buttonsStyling}>
-        <Button variant="contained" size="medium">Register</Button>
-        <Button variant="contained" size="medium">Sign In</Button>
-      </div>
-      <div >
+    <div>
+        <h1>Welcome to Acacia!</h1>
+        <br/>
+        <h2>Sign In To Get Started!</h2>
+        <br/>
         <GoogleButton onClick={handleGoogleSignIn}/>
-      </div>
-    </form>
     </div>
     </div>
   );
