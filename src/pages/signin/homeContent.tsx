@@ -28,7 +28,6 @@ const SignInForm = () => {
   }
 }
   useEffect(() => {
-    console.log("hello");
     if(user != null){
       console.log(user);
     }
