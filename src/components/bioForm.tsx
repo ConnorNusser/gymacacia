@@ -49,7 +49,7 @@ export default function BioForm({userID}: {userID: string}) {
   }
   const CompanyFormSnippet = ({ value }: { value: string }) => {
     return (
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Group className="mb-3" controlId="CompanyNameControl">
             <Form.Label>Company Name</Form.Label>
             <Form.Control
             type="string"
@@ -74,7 +74,7 @@ export default function BioForm({userID}: {userID: string}) {
                 ? <CompanyFormSnippet value={companyName} />
                 : <div hidden></div>
             }
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Group className="mb-3" controlId="contentControl">
           <Form.Label>Whats the content for?</Form.Label>
           <br/>
           <ButtonGroup>
@@ -94,7 +94,7 @@ export default function BioForm({userID}: {userID: string}) {
             ))}
         </ButtonGroup>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Group className="mb-3" controlId="FrequencyControl">
           <Form.Label>Post Frequency?</Form.Label>
           <br/>
           <ButtonGroup>
@@ -114,7 +114,7 @@ export default function BioForm({userID}: {userID: string}) {
             ))}
         </ButtonGroup>
         </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="LocationControl">
               <Form.Label>Location</Form.Label>
               <Form.Control
                 type="string"
@@ -126,7 +126,7 @@ export default function BioForm({userID}: {userID: string}) {
             </Form.Group>
             <Form.Group
               className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
+              controlId="DescriptionControl"
             >
               <Form.Label>Brief Description of your {contentType}</Form.Label>
               <Form.Control as="textarea" rows={3} 

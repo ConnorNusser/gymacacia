@@ -1,4 +1,4 @@
-import { setDoc } from "firebase/firestore";
+import { DocumentData, DocumentReference, setDoc } from "firebase/firestore";
 import { db } from '@/services/firebase';
 import { doc, getDoc} from "firebase/firestore";
 import { contentTypes } from "@/types/contentTypes";
@@ -19,7 +19,7 @@ const createContentData = async (_props: contentTypes) =>{
           companyName: companyName,
           description: description,
         });
-        await setDoc(doc(db, "users", uid), {
+        await UpdateDoc(doc(db, "users", uid), {
             isFormFilled: true  
           });
     }
@@ -28,3 +28,7 @@ const createContentData = async (_props: contentTypes) =>{
 
 
 export default createContentData;
+
+function UpdateDoc(arg0: DocumentReference<DocumentData>, arg1: { isFormFilled: boolean; }) {
+  throw new Error("Function not implemented.");
+}
