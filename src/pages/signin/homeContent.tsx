@@ -1,5 +1,5 @@
 import GoogleButton from 'react-google-button';
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import Router from "next/router";
 import '@/styles/Home.module.css';
 import styles from '@/styles/Home.module.css'
@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import { UserAuth } from '@/context/authcontext';
 import { googleUser } from '@/types/userTypes';
 import userValidation from '../../services/homeloginService';
+import { redirect } from 'next/navigation';
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +27,7 @@ const SignInForm = () => {
         emailVerified: user.emailVerified
       }
       userValidation(gUser);
-      Router.push(routerstr);
+      redirect(routerstr);
   }
 }
 
