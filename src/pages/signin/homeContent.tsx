@@ -13,7 +13,6 @@ const SignInForm = () => {
   const [error, setError] = useState("");
   const {googleSignIn, logOut, user} = UserAuth();
   useEffect(() => {
-    console.log("hi");
     if (user != null) {
       
       const routerstr = `/profile/${user.displayName}`;
@@ -43,7 +42,6 @@ const SignInForm = () => {
     try {
       // Implement your sign-in logic here
       // ...
-      console.log(user);
       Router.push("/dashboard");
     } catch (error) {
         reportError({message: getErrorMessage(error)})

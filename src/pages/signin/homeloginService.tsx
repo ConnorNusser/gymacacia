@@ -7,7 +7,6 @@ import { doc, getDoc} from "firebase/firestore";
 const usersRef = collection(db, "users");
 
 const userValidation = async (_props: googleUser) =>{
-    console.log("hi");
     const {displayName, email, uid, emailVerified} = _props;
     const docRef = doc(db, "users", uid);
     const docSnap = await getDoc(docRef);
