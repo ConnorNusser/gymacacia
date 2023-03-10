@@ -5,7 +5,7 @@ import { contentTypes } from "@/types/contentTypes";
 
 
 const createContentData = async (_props: contentTypes) =>{
-    const {uid, location, frequency, accountType, companyName} = _props;
+    const {uid, location, frequency, accountType, companyName, description} = _props;
     const docRef = doc(db, "userContent", uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
@@ -16,7 +16,8 @@ const createContentData = async (_props: contentTypes) =>{
           location: location,
           frequency: frequency,
           accountType: accountType,
-          companyName: companyName
+          companyName: companyName,
+          description: description,
         });
         await setDoc(doc(db, "users", uid), {
             isFormFilled: true  
