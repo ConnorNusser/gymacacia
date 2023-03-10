@@ -48,19 +48,6 @@ export default function BioForm({userID}: {userID: string}) {
     createContentData(content);
     handleClose();
   }
-  const CompanyFormSnippet = ({ value }: { value: string }) => {
-    return (
-        <Form.Group className="mb-3" controlId="CompanyNameControl">
-            <Form.Label>Company Name</Form.Label>
-            <Form.Control
-            type="string"
-            placeholder="Dave's Tacos"
-            value = {value}
-            onChange={(e) => setCompanyName(e.currentTarget.value)}
-            />
-        </Form.Group>
-    )
-};
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -71,7 +58,15 @@ export default function BioForm({userID}: {userID: string}) {
           <Form>
             {
             (radioValue == 1)
-                ? <CompanyFormSnippet value={companyName} />
+                ? <Form.Group className="mb-3" controlId="CompanyNameControl">
+                    <Form.Label>Company Name</Form.Label>
+                    <Form.Control
+                    type="string"
+                    placeholder="Dave's Tacos"
+                    value = {companyName}
+                    onChange={(e) => setCompanyName(e.currentTarget.value)}
+                    />
+                </Form.Group>
                 : <div hidden></div>
             }
           <Form.Group className="mb-3" controlId="contentControl">
