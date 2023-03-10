@@ -46,6 +46,7 @@ export default function BioForm({userID}: {userID: string}) {
         frequency: freq
       }
     createContentData(content);
+    handleClose();
   }
   const CompanyFormSnippet = ({ value }: { value: string }) => {
     return (
