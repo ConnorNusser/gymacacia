@@ -1,22 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ButtonGroup, ToggleButton } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { render } from 'react-dom';
-
-const CompanyFormSnippet = () => {
-    return (
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Company Name</Form.Label>
-            <Form.Control
-            type="string"
-            placeholder="Dave's Tacos"
-            autoFocus
-            />
-        </Form.Group>
-    )
-};
 
 export default function BioForm() {
   const [show, setShow] = useState(true);
@@ -34,12 +20,33 @@ export default function BioForm() {
     { name: 'Bi-Weekly', value: '3'},
     { name: 'Monthly', value: '4'},
   ];
+  const [location, setLocation] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [companyName, setCompanyName] = useState<string>('');
 
   const handleClose = () => setShow(false);
   function valueShifts(e:any){
     setRadioValue(e.currentTarget.value)
     setContentType(contentDescriptors[e.currentTarget.value - 1])
   }
+  const saveData = () => {
+    console.log(location);
+    console.log(description);
+  }
+  const CompanyFormSnippet = ({ value }: { value: string }) => {
+    return (
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Company Name</Form.Label>
+            <Form.Control
+            type="string"
+            placeholder="Dave's Tacos"
+            autoFocus
+            value = {value}
+            onChange={(e) => setCompanyName(e.currentTarget.value)}
+            />
+        </Form.Group>
+    )
+};
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -50,7 +57,7 @@ export default function BioForm() {
           <Form>
             {
             (radioValue == '1')
-                ? <CompanyFormSnippet/>
+                ? <CompanyFormSnippet value={companyName} />
                 : <div hidden></div>
             }
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -99,6 +106,8 @@ export default function BioForm() {
                 type="string"
                 placeholder="Austin"
                 autoFocus
+                value={location}
+                onChange={(e) => setLocation(e.currentTarget.value)}
               />
             </Form.Group>
             <Form.Group
@@ -106,7 +115,9 @@ export default function BioForm() {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Brief Description of your {contentType}</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              <Form.Control as="textarea" rows={3} 
+              value={description}
+              onChange={(e) => setDescription(e.currentTarget.value)}/>
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -114,7 +125,7 @@ export default function BioForm() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={saveData}>
             Save Changes
           </Button>
         </Modal.Footer>
