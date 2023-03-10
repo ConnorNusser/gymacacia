@@ -12,7 +12,10 @@ const SignInForm = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const {googleSignIn, logOut, user} = UserAuth();
-  useEffect(() => {
+  
+  
+  
+  const checkSignIn = () => {
     if (user != null) {
       
       const routerstr = `/profile/${user.displayName}`;
@@ -24,8 +27,8 @@ const SignInForm = () => {
       }
       userValidation(gUser);
       Router.push(routerstr);
-    }
-  }, [user]);
+  }
+}
 
   function getErrorMessage(error: unknown) {
     if (error instanceof Error) return error.message
@@ -34,6 +37,7 @@ const SignInForm = () => {
   const handleGoogleSignIn = async () => {
     try{
       await googleSignIn();
+      checkSignIn()
     }catch(error){
       reportError({ message: getErrorMessage(error)})
     }
