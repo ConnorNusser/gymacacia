@@ -17,7 +17,6 @@ const SignInForm = () => {
   
   
   const checkSignIn = async () => {
-    console.log(user);
     if (user != null) {
       const gUser: googleUser = {
         uid: user.uid,
