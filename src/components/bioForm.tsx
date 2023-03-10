@@ -54,7 +54,6 @@ export default function BioForm({userID}: {userID: string}) {
             <Form.Control
             type="string"
             placeholder="Dave's Tacos"
-            autoFocus
             value = {value}
             onChange={(e) => setCompanyName(e.currentTarget.value)}
             />
@@ -119,7 +118,6 @@ export default function BioForm({userID}: {userID: string}) {
               <Form.Control
                 type="string"
                 placeholder="Austin"
-                autoFocus
                 value={location}
                 onChange={(e) => setLocation(e.currentTarget.value)}
               />
