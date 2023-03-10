@@ -25,8 +25,9 @@ function Profile() {
       if (docSnap.exists()){
         let isFilledOut = docSnap.data()['isFormFilled'];
         setFilledOut(isFilledOut);
+      }else{
+        setFilledOut(false);
       }
-      setFilledOut(false);
     }
 
     formComponent()

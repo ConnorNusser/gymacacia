@@ -7,7 +7,7 @@ import { contentTypes } from "@/types/contentTypes";
 const createContentData = async (_props: contentTypes) =>{
     const {uid, location, frequency, accountType, companyName, description} = _props;
     const contentRef = doc(db, "userContent", uid);
-    const usersRef = doc(db, "cities", uid);
+    const usersRef = doc(db, "users", uid);
     await setDoc(contentRef, {
       uid: uid,
       location: location,
