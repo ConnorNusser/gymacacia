@@ -3,15 +3,17 @@ import { ButtonGroup, ToggleButton } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import createContentData from '@/services/createContentData';
+import { contentTypes } from '@/types/contentTypes';
 
-export default function BioForm() {
+export default function BioForm({userID}: {userID: string}) {
   const [show, setShow] = useState(true);
-  const [radioValue, setRadioValue] = useState('1');
+  const [radioValue, setRadioValue] = useState(1);
   const [contentType, setContentType] = useState("Business");
   const contentDescriptors = ['Business','Brand'];
   const buttons = [
-    { name: 'Business', value: '1' },
-    { name: 'Personal', value: '2' },
+    { name: 'Business', value: 1 },
+    { name: 'Personal', value: 2 },
   ];
   const [frequencyType, setfrequencyType] = useState("1");
   const frequency = [
@@ -30,8 +32,20 @@ export default function BioForm() {
     setContentType(contentDescriptors[e.currentTarget.value - 1])
   }
   const saveData = () => {
-    console.log(location);
-    console.log(description);
+    let frequencyName = frequency.find(i => i.value === frequencyType);
+    let freq = 'Daily';
+    if (frequencyName){
+        freq = frequencyName['name'];
+    }
+    const content: contentTypes = {
+        uid: userID,
+        location: location,
+        companyName: companyName,
+        accountType: radioValue,
+        description: description,
+        frequency: freq
+      }
+    createContentData(content);
   }
   const CompanyFormSnippet = ({ value }: { value: string }) => {
     return (
@@ -56,7 +70,7 @@ export default function BioForm() {
         <Modal.Body>
           <Form>
             {
-            (radioValue == '1')
+            (radioValue == 1)
                 ? <CompanyFormSnippet value={companyName} />
                 : <div hidden></div>
             }

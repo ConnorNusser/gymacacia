@@ -36,7 +36,7 @@ function Profile() {
     <div>
     {
     (!isFilledOut)
-        ? <BioForm/>
+        ? <BioForm userID = {user.uid}/>
         : <div hidden></div>
     }
     </div>
