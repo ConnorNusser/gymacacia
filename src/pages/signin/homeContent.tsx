@@ -25,7 +25,7 @@ const SignInForm = () => {
         email: user.email,
         emailVerified: user.emailVerified
       }
-      await userValidation(gUser);
+      userValidation(gUser);
       Router.push(routerstr);
   }
 }
@@ -35,10 +35,9 @@ const SignInForm = () => {
     return String(error)
   }
   const handleGoogleSignIn = async () => {
-    console.log("hi");
     try{
       await googleSignIn();
-      await checkSignIn();
+      checkSignIn();
     }catch(error){
       reportError({ message: getErrorMessage(error)})
     }
