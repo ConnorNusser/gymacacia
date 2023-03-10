@@ -18,8 +18,6 @@ const SignInForm = () => {
   
   const checkSignIn = async () => {
     if (user != null) {
-      
-      const routerstr = `/profile/${user.displayName}`;
       const gUser: googleUser = {
         uid: user.uid,
         displayName: user.displayName,
@@ -27,7 +25,6 @@ const SignInForm = () => {
         emailVerified: user.emailVerified
       }
       userValidation(gUser);
-      redirect(routerstr);
   }
 }
 
@@ -39,6 +36,8 @@ const SignInForm = () => {
     try{
       await googleSignIn();
       checkSignIn();
+      const routerstr = `/profile/${user.displayName}`;
+      redirect(routerstr);
     }catch(error){
       reportError({ message: getErrorMessage(error)})
     }
