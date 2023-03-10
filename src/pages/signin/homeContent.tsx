@@ -1,5 +1,5 @@
 import GoogleButton from 'react-google-button';
-import { useState} from "react";
+import { useEffect, useState} from "react";
 import Router from "next/router";
 import '@/styles/Home.module.css';
 import styles from '@/styles/Home.module.css'
@@ -27,7 +27,12 @@ const SignInForm = () => {
       userValidation(gUser);
   }
 }
-
+  useEffect(() => {
+    console.log("hello");
+    if(user != null){
+      console.log(user);
+    }
+  },[user])
   function getErrorMessage(error: unknown) {
     if (error instanceof Error) return error.message
     return String(error)
@@ -35,9 +40,6 @@ const SignInForm = () => {
   const handleGoogleSignIn = async () => {
     try{
       await googleSignIn();
-      await checkSignIn();
-      const routerstr = `/profile/${user.displayName}`;
-      redirect(routerstr);
     }catch(error){
       reportError({ message: getErrorMessage(error)})
     }
