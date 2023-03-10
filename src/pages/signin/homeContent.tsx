@@ -13,6 +13,7 @@ const SignInForm = () => {
   const [error, setError] = useState("");
   const {googleSignIn, logOut, user} = UserAuth();
   useEffect(() => {
+    console.log("hi");
     if (user != null) {
       
       const routerstr = `/profile/${user.displayName}`;
@@ -22,7 +23,6 @@ const SignInForm = () => {
         email: user.email,
         emailVerified: user.emailVerified
       }
-      console.log("hi");
       userValidation(gUser);
       Router.push(routerstr);
     }
