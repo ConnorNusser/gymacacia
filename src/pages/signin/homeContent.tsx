@@ -6,7 +6,7 @@ import styles from '@/styles/Home.module.css'
 import Button from '@mui/material/Button';
 import { UserAuth } from '@/context/authcontext';
 import { googleUser } from '@/types/userTypes';
-import userValidation from './homeloginService';
+import userValidation from '../../services/homeloginService';
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +15,7 @@ const SignInForm = () => {
   
   
   
-  const checkSignIn = () => {
+  const checkSignIn = async () => {
     if (user != null) {
       
       const routerstr = `/profile/${user.displayName}`;
@@ -25,7 +25,7 @@ const SignInForm = () => {
         email: user.email,
         emailVerified: user.emailVerified
       }
-      userValidation(gUser);
+      await userValidation(gUser);
       Router.push(routerstr);
   }
 }
@@ -35,9 +35,10 @@ const SignInForm = () => {
     return String(error)
   }
   const handleGoogleSignIn = async () => {
+    console.log("hi");
     try{
       await googleSignIn();
-      checkSignIn()
+      await checkSignIn();
     }catch(error){
       reportError({ message: getErrorMessage(error)})
     }
