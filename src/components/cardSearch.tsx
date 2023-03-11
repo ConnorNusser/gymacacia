@@ -96,8 +96,13 @@ export default function CardSearch(this: any) {
       </div>
       </div>
     <div className={search.wrap}>
+      <div className={search.centerPadding}>
+        <Button type="submit" variant="primary" onClick={handleSubmit} >
+              AutoGenerate Post
+        </Button>
+      </div>
       <div className={search.bar}>
-        <input className={search.searchbar} type="text" placeholder="Type some key words to create a post." value = {searchTerm} onChange={inputHandler}></input>
+        <input className={search.searchbar} type="text" placeholder="Type some key words to create a post manually." value = {searchTerm} onChange={inputHandler}></input>
       </div>
       <div className={search.centerPadding}>
       <Button type="submit" variant="primary" onClick={handleSubmit} >
