@@ -4,6 +4,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import LinkSocialMedia from './linkSocialMedia';
 import ResponseCard from '../components/responseCard';
 import { Button } from 'react-bootstrap';
+import { instagramPostI, handleInstagramPost} from '@/apis/instagrampost';
 export default function CardSearch(this: any) {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [feedResponseFb, setFeedResponseFb] = useState<string>('');
@@ -58,7 +59,6 @@ export default function CardSearch(this: any) {
     const handleSubmitFb = async() => {
       let submissionTextResponse = await handleSubmissionPost({prefix: "Facebook", searchTerm: searchTerm});
       let submissionImageReponse = await handleSubmissionImage({prefix: "Facebook", searchTerm: searchTerm});
-      console.log(submissionImageReponse);
       setFeedResponseFb(submissionTextResponse.choices[0].text)
       setFeedResponseFbImage(submissionImageReponse);
       
@@ -68,6 +68,11 @@ export default function CardSearch(this: any) {
       let submissionImageReponse = await handleSubmissionImage({prefix: "Instagram", searchTerm: searchTerm});
       setFeedResponseIG(submissionTextResponse.choices[0].text)
       setFeedResponseIgImage(submissionImageReponse);
+      let submissionObject: instagramPostI = {
+        urlImage: submissionImageReponse,
+        caption: submissionTextResponse.choices[0].text 
+      }
+      handleInstagramPost(submissionObject)
       
     }
     const handleSubmitTwitter = async() => {
