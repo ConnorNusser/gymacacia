@@ -3,7 +3,8 @@ import Image from 'next/image';
 import { AuthContextProvider, UserAuth } from '@/context/authcontext';
 import getLinkedInfo from '@/services/getUsers';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { auth } from '@/services/firebase';
+import { Button } from 'react-bootstrap';
+import SocialMediaLinkForm from './socialMediaLinkForm';
 enum IconLinks{
     Instagram = "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png",
     Facebook = "https://upload.wikimedia.org/wikipedia/commons/9/91/036-facebook.png",
@@ -12,18 +13,32 @@ enum IconLinks{
 }
 interface ILinkSocialMedia{
     imgLink: string;
-    name: any;
-    linkedState: boolean;
+    name: string;
+    isLinked: boolean;
 }
 
 const LinkSocialMedia = (props: ILinkSocialMedia) =>{
+    const {user} = UserAuth();
+    const [show, setShow] = useState(false);
+    const showSocialMediaLinkForm = () => {
+        setShow(true);
+      };
+      const LinkSocialMediaButton = ({name}: {name: string})=>{
+        return(
+            <Button onClick={showSocialMediaLinkForm}>Link Account for {name}</Button>
+        )
+    
+    }
     return (
+        <>
+        {show? <SocialMediaLinkForm userID={user.Id}/> : null}
         <li className={cardStyle.card}>
 		<Image src= {props.imgLink} width="50" height="50" alt="Instagram" />
 		<p className={cardStyle.cardImage}></p>
             <small><p>{props.name}</p></small>
-			<small><p>{props.linkedState}</p></small>
+            <small><p>{props.isLinked ? <p>Linked</p> : <LinkSocialMediaButton name={props.name}/>}</p></small>
 	    </li>
+        </>
       );
   }
 
@@ -51,9 +66,9 @@ export default function SocialMediaList(){
       })
     return (
         <ul className={cardStyle.cardList}>
-            <LinkSocialMedia imgLink = {IconLinks.Instagram} name = "Instagram" linkedState = {instagramLinked} />
-            <LinkSocialMedia imgLink = {IconLinks.Facebook} name ="Facebook" linkedState = {facebookLinked}/>
-            <LinkSocialMedia imgLink = {IconLinks.Twitter} name = "Twitter" linkedState = {twitterLinked}/>
+            <LinkSocialMedia imgLink = {IconLinks.Instagram} name = "Instagram" isLinked = {instagramLinked} />
+            <LinkSocialMedia imgLink = {IconLinks.Facebook} name ="Facebook" isLinked = {facebookLinked}/>
+            <LinkSocialMedia imgLink = {IconLinks.Twitter} name = "Twitter" isLinked = {twitterLinked}/>
         </ul>
     );
 }
