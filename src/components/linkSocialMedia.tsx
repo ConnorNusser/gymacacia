@@ -1,7 +1,7 @@
 import cardStyle from '../styles/card.module.css'
 import Image from 'next/image';
 import { AuthContextProvider, UserAuth } from '@/context/authcontext';
-import getUserInfo from '@/services/getUsers';
+import getLinkedInfo from '@/services/getUsers';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { auth } from '@/services/firebase';
 enum IconLinks{
@@ -13,41 +13,35 @@ enum IconLinks{
 interface ILinkSocialMedia{
     imgLink: string;
     name: any;
+    linkedState: boolean;
 }
 
 const LinkSocialMedia = (props: ILinkSocialMedia) =>{
-    const [value, setValue] = useState(false);   // simulate a state change
-    const {user} = UserAuth();
-    useEffect(() => {
-        if (value == true){
-            console.log("yoyo")
-            console.log(user);
-            getUserInfo(user)
-        }
-    }, [value])
-    useEffect(() => {
-        if (user != null){
-            setValue(true);
-        }
-      })
     return (
         <li className={cardStyle.card}>
 		<Image src= {props.imgLink} width="50" height="50" alt="Instagram" />
 		<p className={cardStyle.cardImage}></p>
             <small><p>{props.name}</p></small>
-			<small><p>Not Linked</p></small>
+			<small><p>{props.linkedState}</p></small>
 	    </li>
       );
   }
 
 export default function SocialMediaList(){
-    const user = UserAuth();
+    const {user} = UserAuth();
     const [value, setValue] = useState(false);   // simulate a state change
+    const [twitterLinked, setTwitter] = useState(false);
+    const [instagramLinked, setInstagram] = useState(false);
+    const [facebookLinked, setFacebook] = useState(false);
+    const fetchData = async (user: any) => {
+        const {twitterLinked, instagramLinked, facebookLinked} = await getLinkedInfo(user);
+        setFacebook(facebookLinked);
+        setInstagram(instagramLinked);
+        setTwitter(twitterLinked);
+      }
     useEffect(() => {
         if (value == true){
-            console.log("yoyo")
-            console.log(user);
-            getUserInfo(user)
+            fetchData(user)
         }
     }, [value])
     useEffect(() => {
@@ -57,9 +51,9 @@ export default function SocialMediaList(){
       })
     return (
         <ul className={cardStyle.cardList}>
-            <LinkSocialMedia imgLink = {IconLinks.Instagram} name = "Instagram"  />
-            <LinkSocialMedia imgLink = {IconLinks.Facebook} name ="Facebook"/>
-            <LinkSocialMedia imgLink = {IconLinks.Twitter} name = "Twitter"/>
+            <LinkSocialMedia imgLink = {IconLinks.Instagram} name = "Instagram" linkedState = {instagramLinked} />
+            <LinkSocialMedia imgLink = {IconLinks.Facebook} name ="Facebook" linkedState = {facebookLinked}/>
+            <LinkSocialMedia imgLink = {IconLinks.Twitter} name = "Twitter" linkedState = {twitterLinked}/>
         </ul>
     );
 }
