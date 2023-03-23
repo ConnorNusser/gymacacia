@@ -21,7 +21,7 @@ const Navbar = () => {
         <h5>Acacia</h5>
       </div>
       <Link href="/">Home</Link>
-      <Link href="/about">About</Link>
+      <Link href="/howitworks">How It Works</Link>
       <Link href={profilestr}>Profile</Link>
       <div>
       { user == '' || user == null ? <Link href="/signin/home">SignIn</Link> : <DropDown displayName={user?.displayName} /> }
