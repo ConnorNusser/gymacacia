@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import search from '../styles/search.module.css';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import LinkSocialMedia from './linkSocialMedia';
 import ResponseCard from '../components/responseCard';
 import { Button } from 'react-bootstrap';
