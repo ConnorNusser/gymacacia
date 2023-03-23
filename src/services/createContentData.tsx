@@ -15,6 +15,9 @@ const createContentData = async (_props: contentTypes) =>{
       accountType: accountType,
       companyName: companyName,
       description: description,
+      instagramLinked: false,
+      facebookLinked: false,
+      twitterLinked: false,
     });
     await updateDoc(usersRef, {
         isFormFilled: true  

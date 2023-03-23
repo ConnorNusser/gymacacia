@@ -16,7 +16,10 @@ const userValidation = async (_props: googleUser) =>{
             email: email,
             emailVerified: emailVerified,
             uid: uid,
-            isFormFilled: false  
+            isFormFilled: false,  
+            instagramLinked: false,
+            facebookLinked: false,
+            twitterLinked: false,
           });
     }
 
