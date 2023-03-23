@@ -69,7 +69,7 @@ export default function CardSearch(this: any) {
       setFeedResponseIG(submissionTextResponse.choices[0].text)
       setFeedResponseIgImage(submissionImageReponse);
       let submissionObject: instagramPostI = {
-        urlImage: submissionImageReponse,
+        imageUrl: submissionImageReponse,
         caption: submissionTextResponse.choices[0].text 
       }
       handleInstagramPost(submissionObject)
