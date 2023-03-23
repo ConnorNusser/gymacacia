@@ -6,3 +6,11 @@ export interface contentTypes{
     description: string;
     frequency?: string;
 }
+export interface ISocialMediaLinkInfo{
+    uid: string;
+    username: string;
+    password: string;
+    socialsite: string;
+
+
+}
