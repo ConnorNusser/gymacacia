@@ -7,6 +7,7 @@ export default function SocialMediaLinkForm({userID, socialMediaSite}: {userID: 
   const [show, setShow] = useState(true);
   const [Name, setName] = useState<string>('');
   const [Password, setPassword] = useState<string>('');
+  const sMediaPlaceHolder = `Username for ${socialMediaSite} ex. TheRealWizardOfKansas123`
 
   const handleClose = () => setShow(false);
   const saveData = () => {
@@ -32,7 +33,7 @@ export default function SocialMediaLinkForm({userID, socialMediaSite}: {userID: 
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="string"
-                placeholder="Austin"
+                placeholder={sMediaPlaceHolder}
                 value={Name}
                 onChange={(e) => setName(e.currentTarget.value)}
               />
