@@ -1,28 +1,50 @@
 import { DocumentData, DocumentReference, setDoc, updateDoc } from "firebase/firestore";
 import { db } from '@/services/firebase';
 import { doc, getDoc} from "firebase/firestore";
-import { contentTypes } from "@/types/contentTypes";
+import { ISocialMediaLinkInfo } from "@/types/contentTypes";
+import { SocialMediaEnums} from "@/types/contentTypes"
 
-
-const createContentData = async (_props: contentTypes) =>{
-    const {uid, location, frequency, accountType, companyName, description} = _props;
+const linkSocialMediaData = async (_props: ISocialMediaLinkInfo) =>{
+    const {uid, username, password, socialsite} = _props;
+    const loginRef = doc(db, "userLogin", uid);
     const contentRef = doc(db, "userContent", uid);
-    const usersRef = doc(db, "users", uid);
-    await setDoc(contentRef, {
-      uid: uid,
-      location: location,
-      frequency: frequency,
-      accountType: accountType,
-      companyName: companyName,
-      description: description,
-      instagramLinked: false,
-      facebookLinked: false,
-      twitterLinked: false,
-    });
-    await updateDoc(usersRef, {
-        isFormFilled: true  
+    const docPass = await getDoc(loginRef);
+    if (!docPass.exists()){
+      await setDoc(doc(db, "userLogin", uid), {
+        uid: uid,
+        igUserName: '', 
+        igPassword: '',
+        fbUserName: '',
+        fbPassword: '',
+        twitterUserName: '',
+        twitterPassword: '',
+      });
+    }
+    if (socialsite == SocialMediaEnums.Instagram) {
+      await updateDoc(loginRef, {
+        igUserName: username,
+        igPassword: password,
+      });
+      await updateDoc(contentRef, {
+        instagramLinked: true  
+      });
+    } else if(socialsite == SocialMediaEnums.Facebook){
+      await updateDoc(loginRef, {
+        twitterUserName: username,
+        twitterPassword: password,
+      });
+      await updateDoc(contentRef, {
+        twitterLinked: true  
+      });
+    } else if(socialsite == SocialMediaEnums.Twitter){
+      await updateDoc(loginRef, {
+        fbUserName: username,
+        fbPassword: password,
+      });
+      await updateDoc(contentRef, {
+        facebookLinked: true  
       });
   }
+}
 
-
-export default createContentData;
+export default linkSocialMediaData;

@@ -11,6 +11,9 @@ export interface ISocialMediaLinkInfo{
     username: string;
     password: string;
     socialsite: string;
-
-
 }
+export enum SocialMediaEnums {
+    Instagram = "Instagram",
+    Facebook = "Facebook",
+    Twitter = "Twitter"
+  }
