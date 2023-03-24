@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { ISocialMediaLinkInfo } from '@/types/contentTypes';
+import linkSocialMediaData from '@/services/linkSocialMediaData';
 export default function SocialMediaLinkForm({userID, socialMediaSite}: {userID: string, socialMediaSite: string}) {
   const [show, setShow] = useState(true);
   const [Name, setName] = useState<string>('');
@@ -18,7 +19,7 @@ export default function SocialMediaLinkForm({userID, socialMediaSite}: {userID: 
         socialsite: socialMediaSite
 
       }
-    
+    linkSocialMediaData(content);
     handleClose();
   }
   return (
