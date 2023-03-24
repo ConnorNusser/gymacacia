@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import search from '../styles/search.module.css';
 import LinkSocialMedia from './linkSocialMedia';
 import ResponseCard from '../components/responseCard';
-import { Button } from 'react-bootstrap';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
 export default function CardSearch(user : {user: any}) {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [feedResponseFb, setFeedResponseFb] = useState<string>('');
@@ -93,16 +94,11 @@ export default function CardSearch(user : {user: any}) {
       </div>
       </div>
     <div className={search.wrap}>
-      <div className={search.centerPadding}>
-        <Button type="submit" variant="primary" onClick={handleSubmit} >
-              AutoGenerate Post
-        </Button>
-      </div>
       <div className={search.bar}>
         <input className={search.searchbar} type="text" placeholder="Type some key words to create a post manually." value = {searchTerm} onChange={inputHandler}></input>
       </div>
       <div className={search.centerPadding}>
-      <Button type="submit" variant="primary" onClick={handleSubmit} >
+      <Button type="submit" variant="contained" onClick={handleSubmit} endIcon={<SendIcon/>}>
             Submit
       </Button>
       </div>

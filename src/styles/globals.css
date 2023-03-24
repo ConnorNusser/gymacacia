@@ -13,7 +13,7 @@ a {
   margin: 0 auto;
 }
 nav {
-  margin: 10px auto 80px;
+  margin: 0px auto 80px;
   padding: 10px;
   display: flex;
   justify-content: center;
@@ -42,5 +42,5 @@ footer {
   text-decoration: underline;
 }
 body {
-  background-image: url(../../public/8288032.JPG);
+  background-color: #eaeaea;
 }
