@@ -3,7 +3,6 @@ import search from '../styles/search.module.css';
 import LinkSocialMedia from './linkSocialMedia';
 import ResponseCard from '../components/responseCard';
 import { Button } from 'react-bootstrap';
-import { instagramPostI, handleInstagramPost} from '@/apis/instagrampost';
 export default function CardSearch(this: any) {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [feedResponseFb, setFeedResponseFb] = useState<string>('');
