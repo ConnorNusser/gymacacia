@@ -60,18 +60,12 @@ export default function CardSearch(this: any) {
       let submissionImageReponse = await handleSubmissionImage({prefix: "Facebook", searchTerm: searchTerm});
       setFeedResponseFb(submissionTextResponse.choices[0].text)
       setFeedResponseFbImage(submissionImageReponse);
-      
     }
     const handleSubmitIG = async() => {
       let submissionTextResponse = await handleSubmissionPost({prefix: "Instagram", searchTerm: searchTerm});
       let submissionImageReponse = await handleSubmissionImage({prefix: "Instagram", searchTerm: searchTerm});
       setFeedResponseIG(submissionTextResponse.choices[0].text)
       setFeedResponseIgImage(submissionImageReponse);
-      let submissionObject: instagramPostI = {
-        imageUrl: submissionImageReponse,
-        caption: submissionTextResponse.choices[0].text 
-      }
-      handleInstagramPost(submissionObject)
       
     }
     const handleSubmitTwitter = async() => {
