@@ -31,7 +31,7 @@ const LinkSocialMedia = (props: ILinkSocialMedia) =>{
     }
     return (
         <>
-        {show? <SocialMediaLinkForm userID={user.Id} socialMediaSite={props.name}/> : null}
+        {show? <SocialMediaLinkForm userID={user.uid} socialMediaSite={props.name}/> : null}
         <li className={cardStyle.card}>
 		<Image src= {props.imgLink} width="50" height="50" alt="Instagram" />
 		<p className={cardStyle.cardImage}></p>
