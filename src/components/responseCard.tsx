@@ -1,13 +1,17 @@
+import { handleInstagramPost } from '@/apis/instagrampost';
 import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
+import { SocialMediaEnums } from '@/types/contentTypes';
 interface ICardFeed{
   socialMediaPlatform: string;
   feedType: string;
   image?: string;
 }
 function responseCard(props: ICardFeed) {
-  if (props.image){
-    const srcLink = props.image + "/100px240";
+  const handlePost = () => {
+    if (props.socialMediaPlatform == SocialMediaEnums.Instagram){
+      handleInstagramPost({imageUrl: props.image, caption: props.feedType})
+    }
   }
   return (
     <Card style={{ width: '24rem'}}>
@@ -19,7 +23,7 @@ function responseCard(props: ICardFeed) {
         </Card.Text>
       </Card.Body>
       <Card.Body>
-        <Button variant="primary">Share</Button>
+        <Button variant="primary" onClick={handlePost}>Share</Button>
       </Card.Body>
     </Card>
   );
