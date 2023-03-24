@@ -8,8 +8,7 @@ export interface instagramPostI{
 export const handleInstagramPost = async(prompt: instagramPostI) => {
     const {user} = UserAuth();
 
-    let {igUserName, igPassword} = await UsersLoginInfo(user);
-
+    const {igUserName, igPassword} = await UsersLoginInfo(user);
 const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json',
