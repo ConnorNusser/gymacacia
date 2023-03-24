@@ -11,7 +11,7 @@ export interface ISocialMediaLogin{
 }
 const UsersLoginInfo = async({user}: {user: any}) => {
     if (user.uid != null) {
-        const usersRef = doc(db, "users", user.uid);
+        const usersRef = doc(db, "userLogin", user.uid);
         const docSnap = await getDoc(usersRef);
         if (docSnap.exists()) {
         const userData = LinkedConverter.fromFirestore(docSnap, LinkedConverter.toFirestore(user));

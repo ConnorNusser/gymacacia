@@ -1,7 +1,9 @@
 import SearchCard from '@/components/cardSearch';
+import { UserAuth } from '@/context/authcontext';
 import Head from 'next/head'
 
 const Main = () => {
+  const {user} = UserAuth();
   return (
     <>
       <Head>
@@ -9,7 +11,7 @@ const Main = () => {
         <meta name="mainpage" content="search"/>
       </Head>
       <div>
-        <SearchCard/>
+        <SearchCard user={user}/>
       </div>
     </>
   );

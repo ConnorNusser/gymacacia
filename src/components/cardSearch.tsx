@@ -3,7 +3,7 @@ import search from '../styles/search.module.css';
 import LinkSocialMedia from './linkSocialMedia';
 import ResponseCard from '../components/responseCard';
 import { Button } from 'react-bootstrap';
-export default function CardSearch(this: any) {
+export default function CardSearch(user : {user: any}) {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [feedResponseFb, setFeedResponseFb] = useState<string>('');
   const [feedResponseIG, setFeedResponseIG] = useState<string>('');
@@ -82,13 +82,13 @@ export default function CardSearch(this: any) {
       <div className={search.box}>
       <div className={search.cardWrap}>
         <div className={search.responseCard}>
-        <ResponseCard socialMediaPlatform='Instagram' feedType={feedResponseIG} image={feedResponseIGImage}/>
+        <ResponseCard socialMediaPlatform='Instagram' feedType={feedResponseIG} image={feedResponseIGImage} user={user}/>
         </div>
         <div className={search.responseCard}>
-        <ResponseCard socialMediaPlatform='Facebook' feedType={feedResponseFb} image={feedResponseFbImage}/>
+        <ResponseCard socialMediaPlatform='Facebook' feedType={feedResponseFb} image={feedResponseFbImage} user={user}/>
         </div>
         <div className={search.responseCard}>
-        <ResponseCard socialMediaPlatform='Twitter' feedType={feedResponseTwitter}/>
+        <ResponseCard socialMediaPlatform='Twitter' feedType={feedResponseTwitter} user={user}/>
         </div>
       </div>
       </div>

@@ -2,15 +2,17 @@ import { handleInstagramPost } from '@/apis/instagrampost';
 import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { SocialMediaEnums } from '@/types/contentTypes';
+import { UserAuth } from '@/context/authcontext';
 interface ICardFeed{
   socialMediaPlatform: string;
   feedType: string;
   image?: string;
+  user: any;
 }
 function responseCard(props: ICardFeed) {
   const handlePost = () => {
     if (props.socialMediaPlatform == SocialMediaEnums.Instagram){
-      handleInstagramPost({imageUrl: props.image, caption: props.feedType})
+      handleInstagramPost({imageUrl: props.image, caption: props.feedType, user: props.user})
     }
   }
   return (
