@@ -1,10 +1,11 @@
 import Link from 'next/link'
-import Image from 'next/image'
-import GoogleButton from 'react-google-button';
 import { UserAuth } from '@/context/authcontext';
 import DropDown from './dropdown';
-
-
+import Button from '@mui/material/Button';
+import WorkspacesIcon from '@mui/icons-material/Workspaces';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import {Typography} from '@mui/material';
+import ApiIcon from '@mui/icons-material/Api';
 const Navbar = () => {
   const { user, logOut} = UserAuth();
   const profilestr = user? `/profile/${user.displayName}`: `/signin/home`;
@@ -18,11 +19,23 @@ const Navbar = () => {
   return (
     <nav>
       <div className="logo">
-        <h5>Acacia</h5>
+      <Typography><ApiIcon></ApiIcon> Acacia</Typography>
       </div>
-      <Link href="/">Home</Link>
-      <Link href="/howitworks">How It Works</Link>
-      <Link href={profilestr}>Profile</Link>
+      <Link href="/" passHref>
+        <Button color="secondary"  endIcon={<DashboardIcon/>}>
+          Home
+        </Button>
+      </Link>
+      <Link href="/howitworks" passHref>
+        <Button color="secondary" endIcon={<WorkspacesIcon/>}>
+            How it Works
+          </Button>
+      </Link>
+      <Link href={profilestr} passHref>
+        <Button color="secondary">
+            Profile
+          </Button>
+      </Link>
       <div>
       { user == '' || user == null ? <Link href="/signin/home">SignIn</Link> : <DropDown displayName={user?.displayName} /> }
       </div>

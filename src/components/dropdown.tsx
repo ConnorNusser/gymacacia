@@ -30,6 +30,7 @@ export default function DropDown(props:IDropDown) {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        size="small"
       >
         Logged in as: {props.displayName}
       </Button>
