@@ -7,7 +7,7 @@ import { SocialMediaEnums} from "@/types/contentTypes"
 const linkSocialMediaData = async (_props: ISocialMediaLinkInfo) =>{
     const {uid, username, password, socialsite} = _props;
     const loginRef = doc(db, "userLogin", uid);
-    const contentRef = doc(db, "userContent", uid);
+    const contentRef = doc(db, "users", uid);
     const docPass = await getDoc(loginRef);
     if (!docPass.exists()){
       await setDoc(doc(db, "userLogin", uid), {
