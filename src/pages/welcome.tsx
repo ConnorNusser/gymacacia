@@ -1,3 +1,4 @@
+import AboutComponent from '@/components/aboutcomponent';
 import SearchCard from '@/components/cardSearch';
 import { UserAuth } from '@/context/authcontext';
 import styles from '@/styles/welcome.module.css';
@@ -11,7 +12,7 @@ const Welcome = () => {
         <title>Welcome Page | Acacia</title>
         <meta name="mainpage" content="search"/>
       </Head>
-
+    <AboutComponent/>
     </>
   );
 }
